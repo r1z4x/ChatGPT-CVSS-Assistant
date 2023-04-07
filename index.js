@@ -8,7 +8,7 @@ const API_URL = 'https://api.openai.com/v1/engines/davinci-codex/completions';
 
 app.use(express.json());
 
-app.post('/api/ask', async (req, res) => {
+app.post('/ask', async (req, res) => {
   const prompt = req.body.prompt;
 
   if (!prompt) {
