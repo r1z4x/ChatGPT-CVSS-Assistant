@@ -7,7 +7,7 @@ chatForm.addEventListener('submit', async (event) => {
 
   const prompt = promptInput.value;
 
-  const API_URL = "https://chat-gpt-cvss-assistant.vercel.app/";
+  const API_URL = "https://chat-gpt-cvss-assistant.vercel.app";
 
   try {
     const response = await fetch(`${API_URL}/ask`, {

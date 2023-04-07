@@ -16,21 +16,19 @@ app.post('/ask', async (req, res) => {
     return;
   }
 
-  const headers = {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${OPENAI_API_KEY}`,
-  };
-
-  const data = {
-    'prompt': prompt,
-    'max_tokens': 50,
-    'n': 1,
-    'stop': null,
-    'temperature': 1
-  };
+  const { Configuration, OpenAIApi } = require("openai");
+  const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  const openai = new OpenAIApi(configuration);
+  const response = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: prompt,
+    temperature: 0,
+    max_tokens: 7,
+  });
 
   try {
-    const response = await axios.post(API_URL, data, { headers: headers });
     const chatbotAnswer = response.data.choices[0].text.trim();
     res.json({ answer: chatbotAnswer });
   } catch (error) {

@@ -9,7 +9,7 @@
   "dependencies": {
     "axios": "^0.26.1",
     "express": "^4.17.3",
-    "http-proxy-middleware": "^2.0.2"
-
+    "http-proxy-middleware": "^2.0.2",
+    "openai": "^3.2.1"
   }
 }
