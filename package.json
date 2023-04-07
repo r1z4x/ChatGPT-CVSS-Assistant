@@ -1,0 +1,13 @@
+{
+  "name": "ChatGPT-CVSS-Assistant",
+  "version": "1.0.0",
+  "description": "ChatGPT-CVSS-Assistant is a ChatGPT-based automatic vulnerability assessment tool that helps users calculate CVSS scores quickly and consistently.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "express": "^4.17.3"
+  }
+}
