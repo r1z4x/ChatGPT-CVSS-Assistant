@@ -3,9 +3,6 @@ const axios = require('axios');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const API_URL = 'https://api.openai.com/v1/engines/davinci-codex/completions';  
-
 app.use(express.json());
 
 app.post('/ask', async (req, res) => {
@@ -15,20 +12,21 @@ app.post('/ask', async (req, res) => {
     res.status(400).json({ error: 'No prompt provided' });
     return;
   }
-
-  const { Configuration, OpenAIApi } = require("openai");
-  const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
-  const openai = new OpenAIApi(configuration);
-  const response = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: prompt,
-    temperature: 0,
-    max_tokens: 7,
-  });
-
   try {
+    
+    const { Configuration, OpenAIApi } = require("openai");
+    const configuration = new Configuration({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+    const openai = new OpenAIApi(configuration);
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: prompt,
+      temperature: 0,
+      max_tokens: 7,
+    });
+
+ 
     const chatbotAnswer = response.data.choices[0].text.trim();
     res.json({ answer: chatbotAnswer });
   } catch (error) {
